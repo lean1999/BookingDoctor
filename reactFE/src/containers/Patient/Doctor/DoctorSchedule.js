@@ -128,6 +128,7 @@ class DoctorSchedule extends Component {
       isOpenModalBooking,
       dataScheduleTimeModal,
     } = this.state;
+    console.log('check 122312312', allAvalableTimes)
     let { language } = this.props;
     return (
       <>
@@ -161,13 +162,19 @@ class DoctorSchedule extends Component {
                         language === LANGUAGES.VI
                           ? item.timeTypeData.valueVi
                           : item.timeTypeData.valueEn;
+                      var today = new Date();
+                      var time = today.getHours();
+                      console.log('check time Now', time)
+                      console.log('check time Now 1', timeDisplay.slice(7, 11))
                       return (
                         <button
                           key={index}
                           onClick={() => this.handleClickScheduleTime(item)}
                         >
                           {" "}
+
                           {timeDisplay}
+                          {console.log('check timeDisplay', timeDisplay)}
                         </button>
                       );
                     })}
