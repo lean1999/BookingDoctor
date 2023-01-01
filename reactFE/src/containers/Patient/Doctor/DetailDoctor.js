@@ -9,6 +9,8 @@ import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
 import Footer from "../../Footer";
 import BookingModal from "./Modal/BookingModal";
+import LikeAndShare from "../SocialPlugin/LikeAndShare";
+import Comment from "../SocialPlugin/Comment"
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -74,6 +76,8 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
+          <LikeAndShare/>
+          <Comment/>
           <div className="schedule-doctor">
             <div className="left-content">
               <DoctorSchedule
