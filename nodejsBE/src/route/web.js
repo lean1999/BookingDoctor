@@ -100,7 +100,8 @@ let initWebRoutes = (app) => {
   router.post("/api/send-prescription", doctorControllers.sendPrescription);
 
   router.get("/api/get-all-patient", patientController.getAllPatient);
-
+  router.get("/api/get-all-users-type-patient", userController.handleGetAllUsersPatient);
+  router.get("/api/get-all-users-type", userController.handleGetAllUsersType);
   router.post("/create_payment_url", function (req, res, next) {
     // var ipAddr =
     //   req.headers["x-forwarded-for"] ||

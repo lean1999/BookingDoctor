@@ -70,6 +70,40 @@ let getAllCode = async (req, res) => {
     });
   }
 };
+let handleGetAllUsersPatient = async (req, res) => {
+  let type = req.query.type;
+
+  if (!type) {
+    return res.status(300).json({
+      err: 1,
+      errMessage: "missing for parameter",
+      dataTypeUser,
+    });
+  }
+  let dataTypeUser = await userService.handleGetAllUsersPatient(type);
+  return res.status(200).json({
+    err: 0,
+    errMessage: "success",
+    dataTypeUser,
+  });
+};
+let handleGetAllUsersType = async (req, res) => {
+  let type = req.query.type;
+
+  if (!type) {
+    return res.status(300).json({
+      err: 1,
+      errMessage: "missing for parameter",
+      dataTypeUser,
+    });
+  }
+  let dataTypeUser = await userService.handleGetAllUsersTypes(type);
+  return res.status(200).json({
+    err: 0,
+    errMessage: "success",
+    dataTypeUser,
+  });
+};
 module.exports = {
   handleLogin: handleLogin,
   handleGetAllUsers: handleGetAllUsers,
@@ -77,4 +111,6 @@ module.exports = {
   handleEditUsers: handleEditUsers,
   handleDeleteUser: handleDeleteUser,
   getAllCode: getAllCode,
+  handleGetAllUsersPatient: handleGetAllUsersPatient,
+  handleGetAllUsersType: handleGetAllUsersType
 };

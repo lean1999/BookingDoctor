@@ -219,6 +219,54 @@ let getAllCodeSever = (inputType) => {
     }
   });
 };
+let handleGetAllUsersPatient = (dataType) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let dataTypeUser = "abc";
+      if (dataType === "All") {
+        dataTypeUser = await db.Booking.findAll({
+          where: { statusId: dataType },
+        });
+      }
+
+      if (dataType && dataType !== "All") {
+        dataTypeUser = await db.Booking.findAll({
+          where: { statusId: dataType },
+        });
+      }
+      resolve(dataTypeUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+let handleGetAllUsersTypes = (dataType) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let dataTypeUser = "abc";
+      if (dataType === "All") {
+        dataTypeUser = await db.User.findAll({
+          where: { roleId: dataType },
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+      }
+
+      if (dataType && dataType !== "All") {
+        dataTypeUser = await db.User.findAll({
+          where: { roleId: dataType },
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+      }
+      resolve(dataTypeUser);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
 module.exports = {
   handleUserLogin: handleUserLogin,
   getAllUsers: getAllUsers,
@@ -226,4 +274,6 @@ module.exports = {
   deleteUser: deleteUser,
   updateUserData: updateUserData,
   getAllCodeSever: getAllCodeSever,
+  handleGetAllUsersPatient: handleGetAllUsersPatient,
+  handleGetAllUsersTypes: handleGetAllUsersTypes
 };

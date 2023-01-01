@@ -4,7 +4,7 @@
 
     .manage-admin {
         width: 100%;
-        // display: flex;
+        display: flex;
         height: -webkit-fill-available;
 
         .content-left-admin {
@@ -12,9 +12,6 @@
             background-color: #045454;
             height: -webkit-fill-available;
             padding-top: 20px;
-            position: fixed;
-            z-index: 10;
-            width: 350px;
 
             .title-app {
                 font-size: 30px;
@@ -39,11 +36,13 @@
                     font-family: sans-serif;
                     margin-bottom: 20px;
                     cursor: pointer;
-                    .icon-user{
+
+                    .icon-user {
                         font-size: 30px;
                         margin-bottom: 10px;
                         margin-right: 5px;
                     }
+
                     .sub-mn {
                         font-size: 18px;
                         font-weight: 500;
@@ -59,11 +58,13 @@
                     font-family: sans-serif;
                     margin-bottom: 20px;
                     cursor: pointer;
-                    .icon-clinic{
+
+                    .icon-clinic {
                         font-size: 30px;
                         margin-bottom: 10px;
                         margin-right: 5px;
                     }
+
                     .sub-mn {
                         font-size: 18px;
                         font-weight: 500;
@@ -79,11 +80,13 @@
                     font-family: sans-serif;
                     margin-bottom: 20px;
                     cursor: pointer;
-                    .icon-specialist{
+
+                    .icon-specialist {
                         font-size: 30px;
                         margin-bottom: 10px;
                         margin-right: 5px;
                     }
+
                     .sub-mn {
                         font-size: 18px;
                         font-weight: 500;
@@ -99,7 +102,8 @@
                     font-family: sans-serif;
                     margin-bottom: 20px;
                     cursor: pointer;
-                    .icon-handlebook{
+
+                    .icon-handlebook {
                         font-size: 30px;
                         margin-bottom: 10px;
                         margin-right: 5px;
@@ -120,11 +124,13 @@
                     font-family: sans-serif;
                     margin-bottom: 20px;
                     cursor: pointer;
-                    .icon-logout{
+
+                    .icon-logout {
                         font-size: 30px;
                         margin-bottom: 10px;
                         margin-right: 5px;
                     }
+
                     a {
                         text-decoration: none;
                         color: white;
@@ -146,7 +152,7 @@
         }
 
         .content-right-admin {
-            width: 100%;
+            width: 75%;
             // background-color: cadetblue;
             height: -webkit-fill-available;
 
@@ -156,8 +162,6 @@
                 height: 80px;
                 color: white;
                 display: flex;
-                margin-left: 350px;
-            
 
                 .title-manage-admin {
                     width: 30%;
@@ -182,9 +186,34 @@
             }
 
             .show-content-right-admin {
-                margin-left: 350px;
+
                 padding: 15px;
-                background-color: aliceblue;
+
+                .dashboard-admin {
+                    .content-dashboard {
+                        display: flex;
+
+                        .dashborad-pt {
+                            padding: 10px;
+                            width: 260px;
+                            height: 100px;
+                            border: 1px solid gray;
+                            margin: 10px;
+                            border-radius: 5px;
+                            text-align: center;
+                            display: grid;
+                            font-weight: bolder;
+                            color: white;
+                            background: linear-gradient(135deg, #2f8f90 0%, #412d01 100%);
+                            ;
+
+                            .number-sum {
+                                font-size: 25px;
+                                font-weight: bolder;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

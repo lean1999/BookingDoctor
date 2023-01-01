@@ -114,9 +114,15 @@ const getAllListBooking = (doctorId) => {
   return axios.get(`/api/get-all-patient`, doctorId);
 };
 
-const postBanking = (data) =>{
+const postBanking = (data) => {
   return axios.post(`/create_payment_url`, data);
 }
+const GetAllUsersPatient = (dataTypeUser) => {
+  return axios.get(`/api/get-all-users-type-patient?type=${dataTypeUser}`);
+};
+const getAllTypeUsers = (dataTypeUser) => {
+  return axios.get(`/api/get-all-users-type?type=${dataTypeUser}`);
+};
 export {
   handleLoginAPI,
   getAllUsers,
@@ -147,5 +153,6 @@ export {
   getAllListPatient,
   postSendPrescription,
   getAllListBooking,
-  postBanking
+  postBanking,
+  GetAllUsersPatient, getAllTypeUsers
 };

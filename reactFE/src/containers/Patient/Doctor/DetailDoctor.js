@@ -39,7 +39,7 @@ class DetailDoctor extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {}
+  componentDidUpdate(prevProps, prevState, snapshot) { }
   render() {
     console.log(this.state);
     let language = this.props.language;
@@ -58,9 +58,8 @@ class DetailDoctor extends Component {
             <div
               className="content-left"
               style={{
-                backgroundImage: `url("${
-                  detailDoctor && detailDoctor.image ? detailDoctor.image : ""
-                }")`,
+                backgroundImage: `url("${detailDoctor && detailDoctor.image ? detailDoctor.image : ""
+                  }")`,
               }}
             ></div>
             <div className="content-right">
@@ -76,8 +75,8 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
-          <LikeAndShare/>
-          <Comment/>
+          <LikeAndShare />
+
           <div className="schedule-doctor">
             <div className="left-content">
               <DoctorSchedule
@@ -103,11 +102,12 @@ class DetailDoctor extends Component {
           </div>
 
           <div className="comment-doctor">
-            
+            <Comment />
           </div>
-        
+
         </div>
-        <BookingModal doctorId = {this.props.match.params.id}/>
+
+        <BookingModal doctorId={this.props.match.params.id} />
         <Footer />
       </>
     );
