@@ -8,7 +8,12 @@ import NumberFormat from "react-number-format";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import ProfileDoctor from "../ProfileDoctor";
 import _ from "lodash";
-import { postPatientAppoiment } from "../../../../services/userService";
+import {
+  postPatientAppoiment,
+  postBanking,
+  getDetailInfoDoctor,
+  getAllCodeService,
+} from "../../../../services/userService";
 import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
 import { LANGUAGES } from "../../../../utils";
@@ -23,19 +28,31 @@ class BookingModal extends Component {
       email: "",
       address: "",
       reason: "",
-      birthday: moment(new Date()).startOf("day").valueOf(),
+      birthday: '',
       genders: "",
       doctorId: "",
       selectedGender: "",
       timeType: "",
       isShowLoading: false,
+      dataPayment: [],
     };
   }
 
   async componentDidMount() {
     this.props.getGenders();
+
+    await this.getallpayment();
   }
 
+  getallpayment = async () => {
+    let response = await getAllCodeService("PAYMENT");
+    if (response && response.errCode === 0) {
+      this.setState({
+        dataPayment: response.data,
+      });
+    }
+    console.log("check data pay ment 1233", response);
+  };
   disableDates = () => {
     var today, dd, mm, yyyy;
     today = new Date();
@@ -130,6 +147,30 @@ class BookingModal extends Component {
     }
     return "";
   };
+
+  // handlePayBooking =  async () => {
+
+  //   let res = await postBanking({
+  //   });
+  //   console.log("res", res);
+  //   this.setState({
+  //     isShowLoading: false,
+  //   });
+
+  // };
+
+  handleDoctorInfo = async () => {
+    console.log("thanh toan dien tu")
+    let data = {};
+    data.amount = 350000;
+    data.orderInfo = "test create payment 350.000 VND";
+    let res = await postBanking(data);
+    console.log("res", res);
+    this.setState({
+      isShowLoading: false,
+    });
+  };
+
   handleConfirmBooking = async () => {
     console.log("check confirm", this.state);
     this.setState({
@@ -155,6 +196,7 @@ class BookingModal extends Component {
       timeString: timeString,
       doctorName: doctorName,
     });
+
     console.log("res", res);
     this.setState({
       isShowLoading: false,
@@ -166,13 +208,28 @@ class BookingModal extends Component {
       toast.error("Bookign a new appoiment error");
     }
   };
+
   render() {
-    let { isOpenModal, closeBookingClose, dataTime } = this.props;
+    let { isOpenModal, closeBookingClose, dataTime, dataProfileprop } =
+      this.props;
+    console.log("check data thanh toan", dataProfileprop);
+    console.log("check prop bookign modal", this.props);
+    console.log("asdsadasdasd", this.state.dataPayment);
     let yesterday = new Date(new Date().setTime());
     let doctorId = "";
     if (dataTime && !_.isEmpty(dataTime)) {
       doctorId = dataTime.doctorId;
     }
+    const optionsPayMent = [
+      { value: "Tiền Mặt", label: "Tiền Mặt" },
+      { value: "Thanh Toán Điện Tử", label: "Thanh Toán Điện Tử" },
+    ];
+
+    const optionsExamination = [
+      { value: "Gặp Trực Tiếp", label: "Gặp Trực Tiếp" },
+      { value: "Khám Từ Xa", label: "Khám Từ Xa" },
+    ];
+
     // fullName: '',
     //     phoneNumber: '',
     //         email: '',
@@ -301,9 +358,31 @@ class BookingModal extends Component {
                       options={this.state.genders}
                     />
                   </div>
+                  <div className="col-6 form-group">
+                    <label>Phương thức thanh toán</label>
+                    <Select
+                      value={this.state.options}
+                      // onChange={this.handleChangeSelect}
+                      options={optionsPayMent}
+                    />
+                  </div>
+                  <div className="col-6 form-group">
+                    <label>Phương Thức Khám</label>
+                    <Select
+                      value={this.state.optionsExamination}
+                      onChange={this.handleChangeSelect}
+                      options={optionsExamination}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="booking-modal-footer">
+                <button
+                  className="btn btn-warning"
+                  onClick={() => this.handleDoctorInfo()}
+                >
+                  Thanh Toán Điện Tử
+                </button>
                 <button
                   className=" btn-booking-confirm"
                   onClick={() => this.handleConfirmBooking()}
@@ -335,6 +414,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getGenders: () => dispatch(actions.fetchGenderStart()),
+    getRequiredDoctorInfo: () => dispatch(actions.getRequiredDoctorInfo()),
   };
 };
 

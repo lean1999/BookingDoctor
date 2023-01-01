@@ -1,5 +1,6 @@
 .manage-specialty-container{
     margin: 0 200px;
+    max-width: 960px;
     .ms-title{
         text-align: center;
         text-transform: uppercase;
@@ -16,8 +17,7 @@
             margin: 0 20px;
         }
         .button{
-            padding: 10px 15px;
-           
+            padding: 10px 15px;    
             min-width:75px ;
         }
     }

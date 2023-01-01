@@ -25,7 +25,20 @@ let postVerifyBookAppointment = async (req, res) => {
   }
 };
 
+let getAllPatient = async (req, res) => {
+  try {
+    let info = await patientService.getAllPatient(req.query.doctorId);
+    res.status(200).json(info);
+  } catch (e) {
+    console.log(e);
+    res.status(200).json({
+      errCode: -1,
+      message: "Error from sever ....",
+    });
+  }
+};
 module.exports = {
   postBookAppointment: postBookAppointment,
   postVerifyBookAppointment: postVerifyBookAppointment,
+  getAllPatient:getAllPatient
 };

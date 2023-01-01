@@ -199,6 +199,9 @@ let getaAllPatientAccept = async (req, res) => {
     patientAccept,
   });
 };
+
+
+
 module.exports = {
   getDoctorHome: getDoctorHome,
   getAllDoctors: getAllDoctors,

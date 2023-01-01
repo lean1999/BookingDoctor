@@ -123,7 +123,59 @@ let postVerifyBookAppointment = (data) => {
     }
   });
 };
+
+
+
+let getAllPatient = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing parameter",
+        });
+      } else {
+        let data = await db.Booking.findAll({
+          where:{
+            doctorId:doctorId
+          }
+        });
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+
+// let getAllPatient = (type) => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       let allPatient = "abc";
+//       if (type === "All") {
+//         allPatient = await db.Booking.findAll({
+//           where: { statusId: type },
+//         });
+//       }
+
+//       if (type && type !== "All") {
+//         allPatient = await db.Booking.findAll({
+//           where: { statusId: type },
+//         });
+//       }
+//       resolve(allPatient);
+//     } catch (err) {
+//       reject(err);
+//     }
+//   });
+// };
+
 module.exports = {
   postBookAppointmentService: postBookAppointmentService,
   postVerifyBookAppointment: postVerifyBookAppointment,
+  getAllPatient:getAllPatient
 };

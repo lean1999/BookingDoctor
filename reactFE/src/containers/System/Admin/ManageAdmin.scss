@@ -4,7 +4,7 @@
 
     .manage-admin {
         width: 100%;
-        display: flex;
+        // display: flex;
         height: -webkit-fill-available;
 
         .content-left-admin {
@@ -12,6 +12,9 @@
             background-color: #045454;
             height: -webkit-fill-available;
             padding-top: 20px;
+            position: fixed;
+            z-index: 10;
+            width: 350px;
 
             .title-app {
                 font-size: 30px;
@@ -143,7 +146,7 @@
         }
 
         .content-right-admin {
-            width: 75%;
+            width: 100%;
             // background-color: cadetblue;
             height: -webkit-fill-available;
 
@@ -153,6 +156,8 @@
                 height: 80px;
                 color: white;
                 display: flex;
+                margin-left: 350px;
+            
 
                 .title-manage-admin {
                     width: 30%;
@@ -177,8 +182,9 @@
             }
 
             .show-content-right-admin {
-                
+                margin-left: 350px;
                 padding: 15px;
+                background-color: aliceblue;
             }
         }
     }

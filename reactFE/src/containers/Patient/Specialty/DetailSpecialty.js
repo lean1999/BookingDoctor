@@ -108,7 +108,7 @@ class DetailSpecialty extends Component {
     let { currentDoctorId, dataDetailSpecialty, listProvince } = this.state;
     let { language } = this.props;
     console.log("data", this.state);
-    return (
+    return (<>
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="detail-specialty-body">
@@ -167,8 +167,10 @@ class DetailSpecialty extends Component {
               );
             })}
         </div>
-        <Footer />
+       
       </div>
+      <Footer />
+      </>
     );
   }
 }

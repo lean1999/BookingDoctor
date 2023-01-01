@@ -19,6 +19,7 @@ class ManageSchedule extends Component {
       selectedDoctor: {},
       currentDate: new Date(),
       rangeTime: [],
+      isSelected:false
     };
   }
   componentDidMount() {
@@ -79,10 +80,13 @@ class ManageSchedule extends Component {
     }
   };
   handleSaveSchedule = async () => {
-    let { rangeTime, currentDate, selectedDoctor } = this.state;
+    let { rangeTime, currentDate, selectedDoctor,isSelected } = this.state;
+    console.log("ressss",rangeTime)
     let result = [];
     this.setState({
       rangeTime: rangeTime,
+      selectedDoctor:false,
+      isSelected:false
     });
     if (selectedDoctor && _.isEmpty(selectedDoctor)) {
       toast.error("Select DocTor Required");
@@ -92,6 +96,7 @@ class ManageSchedule extends Component {
       toast.error("Date Required");
       return;
     }
+
 
     // let formattedDate = moment(currentDate).unix();
     let formattedDate = new Date(currentDate).getTime();
@@ -148,7 +153,7 @@ class ManageSchedule extends Component {
               <div className="col-6 form-group">
                 <label>
                   {" "}
-                  <FormattedMessage id="manage-schedule.chooseDate" />
+                  <FormattedMessage id="manage-schedule.chooseDate" />_
                 </label>
                 <DatePicker
                   onChange={this.handleChangeDate}

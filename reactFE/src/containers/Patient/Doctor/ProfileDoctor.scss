@@ -1,8 +1,8 @@
 .profile-doctor-container {
     .intro-doctor {
         display: flex;
-        flex-direction: column;
-        
+        // flex-direction: column;
+        justify-content: space-around;
 
 
         .content-left {

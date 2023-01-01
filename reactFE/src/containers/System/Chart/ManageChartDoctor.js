@@ -1,10 +1,11 @@
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // import Select from "react-select";
 // import "./DoctorExtraInfor.scss";
 // import moment from "moment";
 
-import { getAllPatientAccept } from "../../../services/userService";
+import { getAllListBooking } from "../../../services/userService";
 // import { LANGUAGES } from "../../../utils";
 // import { FormattedMessage } from "react-intl";
 // import NumberFormat from "react-number-format";
@@ -26,8 +27,8 @@ class ManageHandBook extends Component {
     if (this.props.language !== prevProps.language) {
     }
   }
-  getAllPatientAcceptDK = async () => {
-    let response = await getAllPatientAccept("S4");
+  getAllPatientAcceptDK = async (doctorId) => {
+    let response = await getAllListBooking(doctorId);
     console.log("responseS4",response)
    
     if (response && response.err === 0) {
@@ -36,15 +37,15 @@ class ManageHandBook extends Component {
       });
     }
   };
-  getAllPatientAcceptCK = async () => {
-    let response = await getAllPatientAccept("S2");
-    console.log('resS2',response)
-    if (response && response.err === 0) {
-      this.setState({
-        arrPatient1: response.patientAccept,
-      });
-    }
-  };
+//   getAllPatientAcceptCK = async () => {
+//     let response = await getAllPatientAccept("S2");
+//     console.log('resS2',response)
+//     if (response && response.err === 0) {
+//       this.setState({
+//         arrPatient1: response.patientAccept,
+//       });
+//     }
+//   };
   render() {
     let { arrPatient, arrPatient1 } = this.state;
     let dataArrPatient = arrPatient.length;
@@ -70,8 +71,8 @@ class ManageHandBook extends Component {
     };
     const data1 = [
       ["Bệnh nhân chưa khám", "Bênh nhân đã khám"],
-      ["Bệnh nhân chưa khám", 100 - dataArrPatient1 / 10],
-      ["Bệnh nhân đã khám", dataArrPatient1 / 10],
+      ["Bệnh nhân chưa khám", 100 - dataArrPatient1 * 10],
+      ["Bệnh nhân đã khám", dataArrPatient1 * 10],
     ];
 
     const options1 = {

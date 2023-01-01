@@ -98,6 +98,80 @@ let initWebRoutes = (app) => {
   );
 
   router.post("/api/send-prescription", doctorControllers.sendPrescription);
+
+  router.get("/api/get-all-patient", patientController.getAllPatient);
+
+  router.post("/create_payment_url", function (req, res, next) {
+    // var ipAddr =
+    //   req.headers["x-forwarded-for"] ||
+    //   req.connection.remoteAddress ||
+    //   req.socket.remoteAddress ||
+    //   req.connection.socket.remoteAddress;
+    var ipAddr = "127.0.0.1";
+    var tmnCode = "U71WYR2Q";
+    var secretKey = "YOSNOKWVMAAMZLBUGTFZRHTNPHLXCITB";
+    var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    var returnUrl = "http://localhost:3000/detail-doctor/161";
+
+    var date = new Date();
+    var createDate =
+      date.getFullYear() +
+      ("0" + (date.getMonth() + 1)).slice(-2) +
+      ("0" + date.getDate()).slice(-2) +
+      ("0" + date.getHours()).slice(-2) +
+      ("0" + date.getMinutes()).slice(-2) +
+      ("0" + date.getSeconds()).slice(-2);
+
+    var orderId = createDate.slice(-6);
+    var amount = req.body.amount;
+    var bankCode = "NCB";
+
+    var orderInfo = req.body.orderInfo;
+    var orderType = "other";
+    var locale = "vn";
+    var currCode = "VND";
+    var vnp_Params = {};
+    vnp_Params["vnp_Version"] = "2.1.0";
+    vnp_Params["vnp_Command"] = "pay";
+    vnp_Params["vnp_TmnCode"] = tmnCode;
+    vnp_Params["vnp_Locale"] = locale;
+    vnp_Params["vnp_CurrCode"] = currCode;
+    vnp_Params["vnp_TxnRef"] = orderId;
+    vnp_Params["vnp_OrderInfo"] = orderInfo;
+    vnp_Params["vnp_OrderType"] = orderType;
+    vnp_Params["vnp_Amount"] = amount * 100;
+    vnp_Params["vnp_ReturnUrl"] = returnUrl;
+    vnp_Params["vnp_IpAddr"] = ipAddr;
+    vnp_Params["vnp_CreateDate"] = createDate;
+    vnp_Params = sortObject(vnp_Params);
+
+    var querystring = require("qs");
+    var signData = querystring.stringify(vnp_Params, { encode: false });
+    var crypto = require("crypto");
+    var hmac = crypto.createHmac("sha512", secretKey);
+    var signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
+    vnp_Params["vnp_SecureHash"] = signed;
+    vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
+
+    res.redirect(vnpUrl);
+  });
   return app.use("/", router);
 };
+
+function sortObject(obj) {
+  var sorted = {};
+  var str = [];
+  var key;
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      str.push(encodeURIComponent(key));
+    }
+  }
+  str.sort();
+  for (key = 0; key < str.length; key++) {
+    sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
+  }
+  return sorted;
+}
+
 module.exports = initWebRoutes;

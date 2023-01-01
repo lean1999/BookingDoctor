@@ -8,6 +8,7 @@ import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
 import Footer from "../../Footer";
+import BookingModal from "./Modal/BookingModal";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -97,9 +98,13 @@ class DetailDoctor extends Component {
               )}
           </div>
 
-          <div className="comment-doctor"></div>
-          <Footer />
+          <div className="comment-doctor">
+            
+          </div>
+        
         </div>
+        <BookingModal doctorId = {this.props.match.params.id}/>
+        <Footer />
       </>
     );
   }

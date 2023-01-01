@@ -234,7 +234,7 @@ class UserRedux extends Component {
       gender,
     } = this.state;
     return (
-      <div className="user-redux-container">
+      <div className="user-redux-container"  style={{height:'960px'}}>
         <div className="title "> User redux</div>
         <div className="col-12">
           {/* {isGender === true ? "loading gender" : "failed"} */}

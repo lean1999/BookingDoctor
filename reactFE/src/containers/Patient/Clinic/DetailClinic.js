@@ -56,14 +56,14 @@ class DetailClinic extends Component {
     let { currentDoctorId, dataDetailClinic } = this.state;
     let { language } = this.props;
     console.log("data", this.state);
-    return (
+    return (<>
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="detail-specialty-body">
           <div className="description-specialty">
             {dataDetailClinic && !_.isEmpty(dataDetailClinic) && (
               <>
-                <div>{dataDetailClinic.name}</div>
+                {/* <div>{dataDetailClinic.name}</div> */}
                 <div
                   dangerouslySetInnerHTML={{
                     __html: dataDetailClinic.descriptionHTML,
@@ -102,8 +102,10 @@ class DetailClinic extends Component {
               );
             })}
         </div>
-        <Footer />
+       
       </div>
+      <Footer/>
+      </>
     );
   }
 }

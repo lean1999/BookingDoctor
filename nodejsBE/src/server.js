@@ -3,9 +3,13 @@ import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./route/web";
 import connectBD from "./config/connectDB";
+var cors = require('cors')
+
 
 require("dotenv").config();
 let app = express();
+app.options('*', cors())
+
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -39,7 +43,10 @@ initWebRoutes(app);
 
 connectBD();
 
+
 let port = process.env.PORT || 8686;
 app.listen(port, () => {
   console.log("Server running on port " + port);
+  console.log('CORS-enabled web server listening on port ' + port)
+
 });

@@ -16,6 +16,7 @@ import ManagePrescription from "../Doctor/ManagePrescription";
 import ManageHandBook from "./ManageHandBook";
 import ListPatientExam from "./ListPatientExam";
 import ListPatienShedule from "./ListPatienShedule";
+import ManageChartDoctor from "../Chart/ManageChartDoctor";
 class ManageAdmin extends Component {
   constructor(props) {
     super(props);
@@ -25,13 +26,14 @@ class ManageAdmin extends Component {
       showManageDoctor: false,
       showManagePlanExam: false,
       showManageClinic: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showHandBook: false,
       showManageDoctorRole: false,
       showManagePatient: false,
       showManagePrescription: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
+      showListBookingDoctor:false
     };
   }
 
@@ -47,10 +49,12 @@ class ManageAdmin extends Component {
       showManageDoctor: false,
       showManagePlanExam: false,
       showManageClinic: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
+      
     });
   };
   handShowCrudUserRedux = () => {
@@ -60,10 +64,11 @@ class ManageAdmin extends Component {
       showManageDoctor: false,
       showManagePlanExam: false,
       showManageClinic: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
     });
   };
   handShowManageDoctor = () => {
@@ -73,10 +78,11 @@ class ManageAdmin extends Component {
       showCrudReduxUser: false,
       showManagePlanExam: false,
       showManageClinic: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
     });
   };
   handShowPlanExam = () => {
@@ -86,10 +92,11 @@ class ManageAdmin extends Component {
       showCrudUser: false,
       showCrudReduxUser: false,
       showManageClinic: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
     });
   };
   handShowManageClinic = () => {
@@ -99,15 +106,16 @@ class ManageAdmin extends Component {
       showManageDoctor: false,
       showCrudUser: false,
       showCrudReduxUser: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
     });
   };
   handShowSpecialist = () => {
     this.setState({
-      showSpeciallist: true,
+      showSpecialtyList: true,
       showManagePlanExam: false,
       showManageDoctor: false,
       showCrudUser: false,
@@ -116,6 +124,7 @@ class ManageAdmin extends Component {
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: false,
+      showListBookingDoctor:false
     });
   };
   handShowHandBook = () => {
@@ -125,12 +134,33 @@ class ManageAdmin extends Component {
       showManageDoctor: false,
       showCrudUser: false,
       showCrudReduxUser: false,
-      showSpeciallist: false,
+      showSpecialtyList: false,
       showListPatientExamined: false,
       showListPatientScheduled: false,
       showHandBook: true,
+      showListBookingDoctor:false
     });
   };
+
+  handShowBookingDoctor = () => {
+    this.setState({
+      showManageClinic: false,
+      showManagePlanExam: false,
+      showManageDoctor: false,
+      showCrudUser: false,
+      showCrudReduxUser: false,
+      showSpecialtyList: false,
+      showListPatientExamined: false,
+      showListPatientScheduled: false,
+      showHandBook: true,
+      showListBookingDoctor:true
+    });
+  };
+
+
+
+
+// Doctor
 
   handShowManagePatient = () => {
     this.setState({
@@ -185,7 +215,7 @@ class ManageAdmin extends Component {
       showHandBook,
       showManageClinic,
       showManageDoctor,
-      showSpeciallist,
+      showSpecialtyList,
       showManagePlanExam,
       showManageDoctorRole,
       showManagePatient,
@@ -206,9 +236,9 @@ class ManageAdmin extends Component {
                   <div className="menu-manage-admin">
                     <div className="mn-user">
                       <BiUser className="icon-user" /> Quản Lý Người Dùng
-                      <div className="sub-mn" onClick={this.handShowCrudUser}>
+                      {/* <div className="sub-mn" onClick={this.handShowCrudUser}>
                         CRUD User
-                      </div>
+                      </div> */}
                       <div
                         className="sub-mn"
                         onClick={this.handShowCrudUserRedux}
@@ -270,7 +300,7 @@ class ManageAdmin extends Component {
                     {showManageDoctor === true ? <ManageDoctor /> : <></>}
                     {showManagePlanExam === true ? <ManageSchedule /> : <></>}
                     {showManageClinic === true ? <ManageClinic /> : <></>}
-                    {showSpeciallist === true ? <ManageSpecialty /> : <></>}
+                    {showSpecialtyList === true ? <ManageSpecialty /> : <></>}
                     {showHandBook === true ? <ManageHandBook /> : <></>}
                   </div>
                 </div>

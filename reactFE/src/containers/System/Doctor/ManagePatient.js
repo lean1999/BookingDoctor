@@ -153,8 +153,8 @@ class ManagePatient extends Component {
   render() {
     let yesterday = new Date(new Date().setHours(0, 0, 0, 0));
     let { language } = this.props;
-    let { dataPatient, isOpenRemedyModal, dataModel, isOpenWatchPatient } =
-      this.state;
+    let { dataPatient, isOpenRemedyModal, dataModel, isOpenWatchPatient } = this.state;
+    console.log("dataPatient",dataPatient)
 
     return (
       <>
@@ -262,7 +262,7 @@ class ManagePatient extends Component {
           </div>
           <WatchPatientModel
             isOpenModal={isOpenWatchPatient}
-            dataModel={dataPatient}
+            dataModel={dataModel}
             closeRemedyClose={this.closeRemedyClose}
             dataPatient={dataPatient}
           />

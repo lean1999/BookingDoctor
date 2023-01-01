@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Select from "react-select";
 import "./ProfileDoctor.scss";
 import moment from "moment";
-
+import BookingModal from "./Modal/BookingModal";
 import { getProfileDoctorById } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
@@ -90,6 +90,7 @@ class ProfileDoctor extends Component {
     console.log("check datatime", dataTime);
     return (
       <>
+      <BookingModal  dataProfileprop={dataProfile} style = {{ display:'none'}} />
         <div className="profile-doctor-container">
           <div className="intro-doctor">
             <div
