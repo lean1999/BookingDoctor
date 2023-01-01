@@ -20,7 +20,7 @@ class WatchPatientModel extends Component {
       phoneNumber: "",
       patientReason: "",
       genders: "",
-      idPatient:""
+      idPatient: ""
     };
   }
 
@@ -52,8 +52,9 @@ class WatchPatientModel extends Component {
     this.props.sendRemedy(this.state);
   };
   render() {
-    let { isOpenModal, closeRemedyClose, language, dataPatient } = this.props;
-    console.log("dataPatient",this.props.dataPatient.patientId)
+    let { isOpenModal, closeRemedyClose, language, dataPatient, Idtesst } = this.props;
+    console.log("dataPatient", dataPatient)
+    console.log('cgeck prop Idtesst', Idtesst)
     return (
       <>
         <Modal
@@ -63,7 +64,7 @@ class WatchPatientModel extends Component {
           size="lg"
           style={{ width: "1500px" }}
           centered
-          // backdrop={true}
+        // backdrop={true}
         >
           <div className="modal-header">
             <h5 className="modal-title"> Form Thông tin Bệnh Nhân</h5>
@@ -80,104 +81,109 @@ class WatchPatientModel extends Component {
             <div className="booking-modal-content">
               <div className="booking-modal-body">
                 {/* {JSON.stringify(dataTime)} */}
-                {dataPatient && 
+                {dataPatient &&
                   dataPatient.length > 0 &&
                   dataPatient.map((item, index) => {
                     let data = item.date;
-                     data = moment(new Date()).add('days').format('dddd - DD/MM')
-                     console.log("data Date",data);
+                    data = moment(new Date()).add('days').format('dddd - DD/MM')
+                    console.log("data Date", Idtesst === item.patientId);
                     return (
                       <>
+
                         <div className="row" key={index} >
-                          <div className="col-6 form-group">
-                            <label>Họ Và Tên</label>
-                            <input
-                              className="form-control"
-                              value={item.patientData.
-                                lastName}
+                          {Idtesst === item.patientId ? <>
+                            <div className="col-6 form-group">
+                              <label>Họ Và Tên</label>
+                              <input
+                                className="form-control"
+                                value={item.patientData.
+                                  lastName}
                               // onChange={(event) =>
                               //   this.handleOnChangeInput(event, "fullName")
                               // }
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>SDT</label>
-                            <input
-                              className="form-control"
-                              value={item.patientData
-                                .phoneNumber}
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>SDT</label>
+                              <input
+                                className="form-control"
+                                value={item.patientData
+                                  .phoneNumber}
                               // onChange={(event) =>
                               //   this.handleOnChangeInput(event, "phoneNumber")
                               // }
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>Email</label>
-                            <input
-                              className="form-control"
-                              value={item.patientData.email}
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>Email</label>
+                              <input
+                                className="form-control"
+                                value={item.patientData.email}
                               // onChange={(event) =>
                               //   this.handleOnChangeInput(event, "email")
                               // }
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>Địa Chỉ</label>
-                            <input
-                              className="form-control"
-                              value={item.patientData.address}
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>Địa Chỉ</label>
+                              <input
+                                className="form-control"
+                                value={item.patientData.address}
                               // onChange={(event) =>
                               //   this.handleOnChangeInput(event, "address")
                               // }
-                            />
-                          </div>
-                          {/* <p>test</p> */}
-                          <div className="col-6 form-group">
-                            <label>Lý Do Khám Bệnh :</label>
-                            <input
-                              className="form-control"
-                              value={item.patientData.patientReason}
+                              />
+                            </div>
+                            {/* <p>test</p> */}
+                            <div className="col-6 form-group">
+                              <label>Lý Do Khám Bệnh :</label>
+                              <input
+                                className="form-control"
+                                value={item.patientData.patientReason}
                               // onChange={(event) =>
                               //   this.handleOnChangeInput(event, "reason")
                               // }
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>Giới tính</label>
-                            <input
-                              // onChange={this.handleOnchangeDatePiker}
-                              className="form-control"
-                              value={item.patientData.genderData.valueVi}
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>Giới tính</label>
+                              <input
+                                // onChange={this.handleOnchangeDatePiker}
+                                className="form-control"
+                                value={item.patientData.genderData.valueVi}
                               // value={this.state.birthday}
                               // maxDate={this.disableDates()}
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>Ngày Đặt</label>
-                            <input
-                              className="form-control"
-                              value={data}
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>Ngày Đặt</label>
+                              <input
+                                className="form-control"
+                                value={data}
                               // onChange={this.handleChangeSelect}
                               // options={this.state.genders}
-                            />
-                          </div>
-                          <div className="col-6 form-group">
-                            <label>Thời Gian khám :</label>
-                            <input
-                              className="form-control"
-                              value={item.timeTypeDataPatient.valueEn                              }
+                              />
+                            </div>
+                            <div className="col-6 form-group">
+                              <label>Thời Gian khám :</label>
+                              <input
+                                className="form-control"
+                                value={item.timeTypeDataPatient.valueEn}
                               // onChange={this.handleChangeSelect}
                               // options={this.state.genders}
-                            />
-                          </div>
-                          {/* <div className="col-12 form-group">
+                              />
+                            </div>
+                            {/* <div className="col-12 form-group">
                     <label>8</label>
                     <textarea />
                   </div> */}
+                          </> : <></>
+                          }
+
                         </div>
                       </>
-                     );
-                  })} 
+                    );
+                  })}
               </div>
             </div>
           </ModalBody>

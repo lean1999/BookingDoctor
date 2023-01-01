@@ -27,6 +27,7 @@ class ManagePatient extends Component {
       dataModel: {},
       isShowLoading: false,
       showCreatePresiton: false,
+      Idtesst: ''
     };
   }
 
@@ -114,6 +115,7 @@ class ManagePatient extends Component {
     this.setState({
       isOpenWatchPatient: true,
       dataModel: data,
+      Idtesst: item.patientId
     });
     console.log("data", data);
   };
@@ -153,9 +155,9 @@ class ManagePatient extends Component {
   render() {
     let yesterday = new Date(new Date().setHours(0, 0, 0, 0));
     let { language } = this.props;
-    let { dataPatient, isOpenRemedyModal, dataModel, isOpenWatchPatient } = this.state;
-    console.log("dataPatient",dataPatient)
-
+    let { dataPatient, isOpenRemedyModal, dataModel, isOpenWatchPatient, Idtesst } = this.state;
+    console.log("dataPatient", dataPatient)
+    console.log('test Idtesst', Idtesst)
     return (
       <>
         <LoadingOverlay
@@ -181,7 +183,7 @@ class ManagePatient extends Component {
                   onChange={this.handleChangeDate}
                   className="form-control"
                   value={this.state.currentDate}
-                  // minDate={yesterday}
+                // minDate={yesterday}
                 />
               </div>
               <div className="col-12 table-manage-patient">
@@ -265,6 +267,7 @@ class ManagePatient extends Component {
             dataModel={dataModel}
             closeRemedyClose={this.closeRemedyClose}
             dataPatient={dataPatient}
+            Idtesst={Idtesst}
           />
           <RemedyModel
             isOpenModal={isOpenRemedyModal}
