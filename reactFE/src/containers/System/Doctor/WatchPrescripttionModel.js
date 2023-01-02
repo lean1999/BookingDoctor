@@ -8,7 +8,7 @@ import ManagePatient from "./ManagePatient";
 import { LANGUAGES, CommonUtils } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
-class WatchPatientModel extends Component {
+class WatchPrescripttionModel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,8 @@ class WatchPatientModel extends Component {
       phoneNumber: "",
       patientReason: "",
       genders: "",
-      idPatient: ""
+      truongNgu:''
+   
     };
   }
 
@@ -51,10 +52,21 @@ class WatchPatientModel extends Component {
   handleSendRemedy = () => {
     this.props.sendRemedy(this.state);
   };
+
+
+  handleOnclick = (item,truongNgu)=>{
+console.log("item,",item,truongNgu)
+alert("dasjdksah")
+  }
+
+
+  handleChangeTextArea = (event)=>{
+    console.log(event.target.value)
+  }
+  
   render() {
-    let { isOpenModal, closeRemedyClose, language, dataPatient, Idtesst } = this.props;
-    console.log("dataPatient", dataPatient)
-    console.log('cgeck prop Idtesst', Idtesst)
+    let { isOpenModal, closeRemedyClose, language, dataModel, Idtesst,dataIdShow  } = this.props;
+    let {truongNgu} = this.state
     return (
       <>
         <Modal
@@ -81,17 +93,18 @@ class WatchPatientModel extends Component {
             <div className="booking-modal-content">
               <div className="booking-modal-body">
                 {/* {JSON.stringify(dataTime)} */}
-                {dataPatient &&
-                  dataPatient.length > 0 &&
-                  dataPatient.map((item, index) => {
+                {dataModel &&
+                  dataModel.length >= 0 &&
+                  dataModel.map((item, index) => {
+                    console.log("item",item)
                     let data = item.date;
                     data = moment(new Date()).format('dddd - DD/MM')
-                    console.log("data Date", Idtesst === item.patientId);
+                    console.log("data Date", dataIdShow === item.patientId);
                     return (
                       <>
 
                         <div className="row" key={index} >
-                          {Idtesst === item.patientId ? <>
+                          {dataIdShow === item.patientId ? <>
                             <div className="col-6 form-group">
                               <label>Họ Và Tên</label>
                               <input
@@ -173,10 +186,12 @@ class WatchPatientModel extends Component {
                               // options={this.state.genders}
                               />
                             </div>
-                            {/* <div className="col-12 form-group">
-                    <label>8</label>
-                    <textarea />
-                  </div> */}
+                            <div className="col-12 form-group">
+                              <label>Chuẩn đoán của bác sĩ:</label>
+                           
+                              <textarea rows="4" cols="50" onChange={(event)=>this.handleChangeTextArea(event)}      value={truongNgu}> </textarea>
+                            </div>
+                            <button className="col-4 btn btn-warning" color="warning" onClick={()=>this.handleOnclick(item,truongNgu)}>Send</button>
                           </> : <></>
                           }
 
@@ -188,7 +203,6 @@ class WatchPatientModel extends Component {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button color="warning">Send</Button>{" "}
             <Button color="secondary" onClick={closeRemedyClose}>
               Cancel
             </Button>
@@ -210,4 +224,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WatchPatientModel);
+export default connect(mapStateToProps, mapDispatchToProps)(WatchPrescripttionModel);

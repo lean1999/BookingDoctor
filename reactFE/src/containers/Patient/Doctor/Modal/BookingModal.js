@@ -370,7 +370,7 @@ class BookingModal extends Component {
                     <label>Phương Thức Khám</label>
                     <Select
                       value={this.state.optionsExamination}
-                      onChange={this.handleChangeSelect}
+                      // onChange={this.handleChangeSelect}
                       options={optionsExamination}
                     />
                   </div>

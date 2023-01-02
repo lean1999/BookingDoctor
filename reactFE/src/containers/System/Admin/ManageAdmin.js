@@ -422,7 +422,9 @@ class ManageAdmin extends Component {
               <div className="manage-admin">
                 <div className="content-left-admin">
                   <div className="title-app">BOOKING DOCTOR </div>
+                  
                   <div className="menu-manage-admin">
+                    
                     <div className="mn-user">
                       Quản Lý Lịch Trình Bác Sĩ
                       <div
@@ -477,6 +479,35 @@ class ManageAdmin extends Component {
                   <div className="header-content-right-admin">
                     <div className="title-manage-admin">Bác Sĩ Quản Lý</div>
                     <div className="info-admin"> Bác Sĩ</div>
+
+                    {/* {showDashBoard = true ? <>
+                          <div className="dashboard-admin">
+                            <div className="content-dashboard">
+                              <div className="dashborad-pt">
+                                <span className="number-sum">{arrUsers.length}</span>
+                                Tổng số bệnh nhân
+                              </div>
+                              <div className="dashborad-pt">
+                                <span className="number-sum">{arrUsers1.length}</span>
+                                Tổng số bác sĩ
+                              </div>
+                              <div className="dashborad-pt">
+                                <span className="number-sum">{arrUsers2.length}</span>
+                                Số bệnh nhân đợi khám
+                              </div>
+                              <div className="dashborad-pt">
+                                <span className="number-sum">{arrUsers3.length}</span>
+                                Số bệnh nhân đã khám
+                              </div>
+                              <div className="dashborad-pt">
+                                <span className="number-sum">{arrUsers4.length}</span>
+                                Số bệnh nhân đặt chưa xác nhận
+                              </div>
+                            </div>
+                            <div className="chart-doctor-number">
+                              <Chart chartType="ColumnChart" width="100%" height="600px" data={data} />
+                            </div>
+                          </div></> : <></>} */}
                   </div>
                   <div className="show-content-right-admin">
                     {showManageDoctorRole === true ? <ManageSchedule /> : <></>}

@@ -15,6 +15,7 @@ import PrescriptionModel from "./PrescriptionModel";
 import { toast } from "react-toastify";
 import LoadingOverlay from "react-loading-overlay";
 import CreatePrecription from "./CreatePrecription";
+import WatchPrescripttionModel from "./WatchPrescripttionModel";
 class ManagePrescription extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +23,11 @@ class ManagePrescription extends Component {
       currentDate: moment(new Date()).startOf("day").valueOf(),
       dataPatient: [],
       isOpenRemedyModal: false,
+      isOpenWatchPatient:false,
       dataModel: {},
       isShowLoading: false,
       showCreatePresiton: false,
+      idPatient: ""
     };
   }
 
@@ -95,6 +98,7 @@ class ManagePrescription extends Component {
     };
     this.setState({
       isOpenRemedyModal: true,
+      
       dataModel: data,
     });
     console.log("data", data);
@@ -103,10 +107,36 @@ class ManagePrescription extends Component {
   closeRemedyClose = () => {
     this.setState({
       isOpenRemedyModal: false,
+      isOpenWatchPatient:false,
       dataModel: {},
     });
   };
 
+
+  handleBtnWatch = (item) => {
+    let data = {
+      doctorId: item.doctorId,
+      patientId: item.patientId,
+      email: item.patientData.email,
+      timeType: item.timeType,
+      patientName: item.patientData.lastName,
+    };
+    this.setState({
+      isOpenRemedyModal: true,
+      isOpenWatchPatient: true,
+      dataModel: data,
+      idPatient:item.patientId
+    });
+    console.log("data", data);
+  };
+
+  closeRemedyClose = () => {
+    this.setState({
+      isOpenRemedyModal: false,
+      isOpenWatchPatient: false,
+      dataModel: {},
+    });
+  };
   // sendPrescription = async (dataChild) => {
   //   let { dataModel } = this.state;
   //   this.setState({ isShowLoading: true });
@@ -141,7 +171,7 @@ class ManagePrescription extends Component {
       "/" +
       toDay.getFullYear();
     let { language } = this.props;
-    let { dataPatient, isOpenRemedyModal, dataModel } = this.state;
+    let { dataPatient, isOpenRemedyModal, dataModel,isOpenWatchPatient,idPatient } = this.state;
 
     return (
       <>
@@ -201,6 +231,15 @@ class ManagePrescription extends Component {
                                 <td> {item.patientData.lastName}</td>
                                 <td>{item.patientData.address}</td>
                                 <td>{gender}</td>
+
+                                <td className="one">
+                                  <button
+                                    className="btn btn-warning"
+                                   onClick={() => this.handleBtnWatch(item)}
+                                  >
+                                    See more
+                                  </button>
+                                </td>
                                 <td className="one">
                                   <button
                                     className="btn btn-confirm"
@@ -235,6 +274,14 @@ class ManagePrescription extends Component {
             dataModel={dataModel}
             closeRemedyClose={this.closeRemedyClose}
             sendRemedy={this.sendPrescription}
+          />
+           <WatchPrescripttionModel
+              isOpenModal={isOpenWatchPatient}
+            // isOpenModal={isOpenRemedyModal}
+            dataModel={dataPatient}
+            closeRemedyClose={this.closeRemedyClose}
+            sendRemedy={this.sendPrescription}
+            dataIdShow={idPatient}
           />
         </LoadingOverlay>
       </>

@@ -86,14 +86,14 @@ class RemedyModel extends Component {
                     onChange={(event) => this.handleOnChangeEmail(event)}
                   />
 
-                  <div className="col-12 form-group">
+                  {/* <div className="col-12 form-group">
                     <label>Chọn file đơn thuốc</label>
                     <input
                       type="file"
                       className="form-control-file"
                       onChange={(event) => this.handleOnChangeImg(event)}
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </form>

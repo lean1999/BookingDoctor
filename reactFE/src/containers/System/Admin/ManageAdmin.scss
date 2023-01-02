@@ -10,7 +10,7 @@
         .content-left-admin {
             width: 25%;
             background-color: #045454;
-            height: -webkit-fill-available;
+            height: 960px;
             padding-top: 20px;
 
             .title-app {
@@ -156,13 +156,45 @@
             // background-color: cadetblue;
             height: -webkit-fill-available;
 
+            
             .header-content-right-admin {
                 position: relative;
                 background-color: #045454;
                 height: 80px;
                 color: white;
                 display: flex;
+             
 
+                // .show-content-right-admin {
+
+                //     padding: 15px;
+    
+                    .dashboard-admin {
+                        .content-dashboard {
+                            display: flex;
+    
+                            .dashborad-pt {
+                                padding: 10px;
+                                width: 260px;
+                                height: 100px;
+                                border: 1px solid gray;
+                                margin: 10px;
+                                border-radius: 5px;
+                                text-align: center;
+                                display: grid;
+                                font-weight: bolder;
+                                color: white;
+                                background: linear-gradient(135deg, #2f8f90 0%, #412d01 100%);
+                                ;
+    
+                                .number-sum {
+                                    font-size: 25px;
+                                    font-weight: bolder;
+                                }
+                            }
+                        }
+                    }
+                
                 .title-manage-admin {
                     width: 30%;
                     font-size: 20px;
